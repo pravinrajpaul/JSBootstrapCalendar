@@ -1,0 +1,298 @@
+:root {
+  --cal-weekdays-backgroud: white;
+  --cal-weekdays-font: black;
+  --cal-weekdays-head-font: black;
+  --cal-weekend-font: rgb(11, 94, 215);
+  --cal-banner-background-color: 11, 94, 215;
+  --cal-banner-background: rgb(var(--cal-banner-background-color));
+  --cal-banner-font: floralwhite;
+  --cal-weekdays-outmonth: grey;
+  --cal-weekdays-selecthover: var(--cal-banner-background);
+}
+
+.cal-container {
+  color: floralwhite;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.calendar {
+  background-color: var(--cal-weekdays-backgroud);
+  color: var(--cal-banner-font);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 100%;
+  margin-left: 10px;
+  z-index: 1000;
+  height: 0px;
+  width: 0px;
+  transition: height .5s, width .5s;
+  display: none;
+}
+
+.calendar.show {
+  display: inline;
+}
+
+.month {
+  background-color: var(--cal-banner-background);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.month i {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  cursor: pointer;
+}
+
+.month h5,
+.month p {
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.month h5:hover,
+.month p:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.weekdays {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  text-align: center;
+  align-content: center;
+}
+
+.weekdays div {
+  font-weight: 500;
+  color: var(--cal-weekdays-head-font);
+}
+
+.weekdays i {
+  margin: 0 5px;
+  color: var(--cal-weekend-font);
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.months {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.months div, .yeargrp {
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: var(--cal-banner-background);
+}
+
+.months div:hover {
+  color: var(--cal-banner-font);
+  background-color: var(--cal-banner-background);
+}
+
+.calendar .days div.yeargrp:hover {
+  color: var(--cal-banner-font);
+  background-color: var(--cal-banner-background);
+}
+
+.days div {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.days div.weekday:nth-child(7n),
+.days div.weekday:nth-child(7n-1) {
+  color: var(--cal-weekend-font);
+}
+
+.weekdays,
+.days,
+.month {
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.weekdays,
+.days,
+.months {
+  color: var(--cal-weekdays-font);
+}
+
+.weekdays .weekend {
+  color: var(--cal-weekend-font);
+}
+
+.pmd,
+.nmd,
+.days div.nmd:nth-child(7n),
+.days div.nmd:nth-child(7n-1),
+.days div.pmd:nth-child(7n),
+.days div.pmd:nth-child(7n-1) {
+  color: var(--cal-weekdays-outmonth);
+}
+
+.calendar .days div.today, .yeargrp.curyear {
+  border-radius: 5px;
+  background-color: var(--cal-banner-background);
+  color: var(--cal-banner-font);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.calendar .days div.selected, .yeargrp.selected {
+  border: 1px solid var(--cal-banner-background);
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.calendar .days div.selected.today, .yeargrp.selected.curyear {
+  border: 1px solid var(--cal-banner-font);
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.calendar .days div:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calendar .days div.today:hover, .yeargrp.curyear:hover {
+  background-color: rgba(var(--cal-banner-background-color), 0.5);
+  color: var(--cal-weekend-font);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  .calendar {
+    max-width: 300px;
+    max-height: 250px;
+    font-size: 1em;
+    line-height: 1em;
+  }
+
+  .calendar.show {
+    height: 250px;
+    width: 300px;
+  }
+
+  .month i {
+    flex: 1;
+  }
+
+  .year {
+    flex: 3;
+  }
+
+  .month h5,
+  .month p {
+    padding: 5px 10px;
+    margin: 3px;
+  }
+
+  .weekdays,
+  .days {
+    margin: 2px;
+  }
+
+  .days div,
+  .weekdays div {
+    flex-basis: 13%;
+    margin: 1px;
+    padding: 2px 0;
+  }
+
+  .months {
+    margin: 0 3px;
+  }
+
+  .months div {
+    flex-basis: 21%;
+    padding: 16px 2px;
+    margin: 3px;
+  }
+
+  div.yeargrp {
+    flex-basis: 21%;
+    padding: 10px 5px;
+    margin: 5px;
+  }
+
+}
+
+@media only screen and (max-width: 1199px) {
+  .calendar {
+    max-width: 200px;
+    max-height: 170px;
+    font-size: .8em;
+    line-height: .8em;
+  }
+
+  .calendar.show {
+    height: 170px;
+    width: 200px;
+  }
+
+  .month i {
+    display: inline-block;
+    font-size: 1em;
+    line-height: 1em;
+  }
+  
+  .year {
+    width: 150px;
+  }
+
+  .month h5,
+  .month p {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 3px;
+    font-size: 1em;
+  }
+
+  .weekdays,
+  .days {
+    margin: 2px;
+  }
+
+  .days div,
+  .weekdays div {
+    flex-basis: 13%;
+    margin: 1px;
+    padding: 2px 0;
+  }
+
+  .months {
+    margin: 6px 0 3px;
+  }
+
+  .months div, div.yeargrp {
+    flex-basis: 20%;
+    padding: 10px 3px;
+    margin: 3px;
+  }
+}
